@@ -1,0 +1,11 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAzY2JmNjA5OWNjZTk5Y2Q2MzJkMzEiLCJpYXQiOjE3NDU0MTUwNDYsImV4cCI6MTc0NTQzMzA0Nn0.Rx2E7t9S7EplVbpvuP7ptYk335HGolRrlQR6BtMdsCI
+
+### Register a new user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Kevin",
+  "email": "kevin@example.com",
+  "password": "yourPassword"
+}
