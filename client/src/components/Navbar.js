@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import Logout from "./Logout";
 
 const MyNavbar = () => {
   return (
@@ -10,6 +11,9 @@ const MyNavbar = () => {
         </li>
         <li>
           <a href="/register">Register</a>
+        </li>
+        <li>
+          <Logout />
         </li>
       </ul>
     </Navbar>

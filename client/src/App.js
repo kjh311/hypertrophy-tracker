@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
 
 export const LoggedInContext = React.createContext();
 
@@ -41,21 +42,8 @@ function App() {
                 />
               }
             />
-            <Route
-              exact
-              path="/login"
-              element={
-                <Login
-                // contentHeight={contentHeight}
-                // formData={formData}
-                // setFormData={setFormData}
-                // refreshFlag={refreshFlag}
-                // setRefreshFlag={setRefreshFlag}
-                // loading={loading}
-                // setLoading={setLoading}
-                />
-              }
-            />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
           </Routes>
           <Footer />
         </Router>
