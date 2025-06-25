@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  const [name, setName] = useState(
+    localStorage.getItem("hypertrophy-username")
+  );
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <br />
+      <h2>Welcome, {name}!</h2>
+    </div>
+  );
 };
 
 export default Dashboard;

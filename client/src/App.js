@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export const LoggedInContext = React.createContext();
 
@@ -43,7 +44,19 @@ function App() {
               }
             />
             <Route exact path="/login" element={<Login />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route
+              exact
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard
+                  // contentHeight={contentHeight}
+                  // refreshFlag={refreshFlag}
+                  // setRefreshFlag={setRefreshFlag}
+                  />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </Router>
