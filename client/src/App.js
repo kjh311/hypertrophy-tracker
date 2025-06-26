@@ -52,7 +52,11 @@ function App() {
                 />
               }
             />
-            <Route exact path="/login" element={<Login />} />
+            <Route
+              exact
+              path="/login"
+              element={<Login contentHeight={contentHeight} />}
+            />
             <Route
               exact
               path="/dashboard"
@@ -67,7 +71,7 @@ function App() {
               }
             />
           </Routes>
-          <Footer ref={navbarRef} />
+          <Footer ref={footerRef} />
         </Router>
       </LoggedInContext.Provider>
     </div>

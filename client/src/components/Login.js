@@ -4,7 +4,7 @@ import { LoggedInContext } from "../App";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import "./LoginForm.css"; // You'll create this CSS file
 
-const LoginForm = ({ onLoginSuccess, onLoginError, contentHeight }) => {
+const LoginForm = ({ contentHeight, onLoginSuccess, onLoginError }) => {
   // State to hold the email and password input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

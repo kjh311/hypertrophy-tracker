@@ -5,7 +5,7 @@ const UpdateHeights = ({ navbarRef, footerRef, setContentHeight }) => {
     const updateHeights = () => {
       const navHeight = navbarRef.current?.offsetHeight || 0;
       const footerHeight = footerRef.current?.offsetHeight || 0;
-      const newHeight = `calc(100vh - ${navHeight * 2 + footerHeight}px)`;
+      const newHeight = `calc(100vh - ${navHeight + footerHeight}px)`;
       setContentHeight(newHeight);
     };
 

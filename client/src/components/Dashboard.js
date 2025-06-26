@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const Dashboard = () => {
+const Dashboard = ({ contentHeight }) => {
   const [name, setName] = useState(
     localStorage.getItem("hypertrophy-username")
   );
   return (
-    <div>
+    <div style={{ minHeight: contentHeight }}>
       <h1>Dashboard</h1>
       <br />
       <h2>Welcome, {name}!</h2>
