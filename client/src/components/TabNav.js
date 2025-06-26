@@ -17,8 +17,7 @@ const TabNav = () => {
           eventKey="workout"
           title={
             <span className="flex items-center">
-              Workout{" "}
-              <FaDumbbell className="dumbell-icon" size={30} color="blue" />
+              Workout <FaDumbbell className="dumbell-icon" size={30} />
               {/* <i class="fa-solid fa-dumbbell"></i> */}
             </span>
           }

@@ -1,4 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAzY2JmNjA5OWNjZTk5Y2Q2MzJkMzEiLCJpYXQiOjE3NDU0MTUwNDYsImV4cCI6MTc0NTQzMzA0Nn0.Rx2E7t9S7EplVbpvuP7ptYk335HGolRrlQR6BtMdsCI
+# You can remove or comment out `@name = development` if you use the full path,
+# but it doesn't hurt to keep it if you prefer to see the active environment.
 
 ### Register a new user
 POST http://localhost:5000/api/auth/register
@@ -8,4 +9,12 @@ Content-Type: application/json
   "name": "Kevin",
   "email": "kevin@example.com",
   "password": "yourPassword"
+}
+
+### Create a new workout
+POST http://localhost:5000/api/workouts
+Content-Type: application/json
+Authorization: Bearer {{development.TOKEN}}
+{
+  "name": "Arm Workout"
 }

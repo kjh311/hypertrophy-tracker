@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = ({ ref }) => {
   return (
-    <footer className="bg-blue-200 footer" ref={ref}>
+    <footer className="bg-blue-200 footer pb-3 pt-3" ref={ref}>
       <div className=" mx-auto text-center text-sm sm:text-base">
         &copy; {new Date().getFullYear()}{" "}
         <a
