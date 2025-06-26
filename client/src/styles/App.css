@@ -20,3 +20,12 @@
   font-size: 20px;
   color: #666;
 }
+
+.dashboard-wrapper {
+  max-width: 1200px;
+  /* border: 2px solid black; */
+}
+
+.dumbell-icon {
+  margin-left: 10px;
+}

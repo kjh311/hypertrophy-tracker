@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import TabNav from "./TabNav";
 
 const Dashboard = ({ contentHeight }) => {
   const [name, setName] = useState(
     localStorage.getItem("hypertrophy-username")
   );
   return (
-    <div style={{ minHeight: contentHeight }}>
-      <h1>Dashboard</h1>
+    <div
+      style={{ minHeight: contentHeight }}
+      className="dashboard-wrapper m-auto "
+    >
+      {/* <h2>Welcome, {name}!</h2> */}
       <br />
-      <h2>Welcome, {name}!</h2>
+      <TabNav />
     </div>
   );
 };
