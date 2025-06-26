@@ -1,8 +1,11 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Input from "./Input";
-import Button from "./Button";
+// Assuming Input and Button are custom components,
+// if they are not using Tailwind, you might need to adjust their internal styling.
+// For this example, I'll style the raw inputs directly.
+// import Input from "./Input"; // Not directly used in the provided code
+// import Button from "./Button"; // Not directly used in the provided code
 import { LoggedInContext } from "../App";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -11,10 +14,8 @@ const Register = ({ contentHeight }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  // const [dayTheme] = useContext(DayTheme);
   const [showPassword, setShowPassword] = useState(false);
-  // const { triggerFadeOut, setTriggerFadeOut } = useContext(FadeContext);
-  const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
+  const [, setLoggedIn] = useContext(LoggedInContext); // Destructure loggedIn but not using it directly here
   const navigate = useNavigate();
 
   const togglePassword = () => {
@@ -28,6 +29,7 @@ const Register = ({ contentHeight }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage(""); // Clear previous messages
 
     try {
       const response = await axios.post(url, {
@@ -41,14 +43,14 @@ const Register = ({ contentHeight }) => {
       localStorage.setItem("hypertrophy-token", token);
       localStorage.setItem("hypertrophy-username", user.name);
 
-      setMessage(message);
+      setMessage(message); // Success message
       setLoggedIn(true);
       navigate("/dashboard");
     } catch (error) {
       setMessage(
         error.response?.data?.error ||
           error.response?.data?.message ||
-          "Something went wrong"
+          "Registration failed. Please try again."
       );
     }
   };
@@ -59,50 +61,77 @@ const Register = ({ contentHeight }) => {
   };
 
   return (
-    <div className="register-container" style={{ minHeight: contentHeight }}>
-      <div className="register-card rounded-xl pt-3 pb-3">
-        <h2 className="text-lg sm:text-2xl font-bold text-center mb-2 sm:mb-6">
+    // Outer container: Flexbox to center content, min-h to take full height
+    <div
+      className="flex items-center justify-center p-4 bg-gray-100" // Added p-4 padding and light gray background
+      style={{ minHeight: contentHeight }}
+    >
+      {/* Card container: Centered, responsive width, padding, shadow, rounded corners */}
+      <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200">
+        <h2 className="text-xl sm:text-3xl font-extrabold text-center text-gray-800 mb-6">
           Create an Account
         </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="flex justify-center p-2 m-2 bg-blue-200"
-        >
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {" "}
+          {/* Vertical spacing between form elements */}
+          {/* Name Input */}
           <input
             type="text"
             value={name}
-            className="p-2 m-2"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
             placeholder="Enter your First Name"
             onChange={capitalizeFirstLetter}
           />
-          <br />
-          <br />
+          {/* Email Input */}
           <input
             type="email"
             value={email}
             placeholder="Enter your Email"
             required
-            className="p-2 m-2"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <br />
-          <input
-            type={`${showPassword ? "text" : "password"}`}
-            value={password}
-            placeholder="Enter your Password"
-            required
-            className="p-2 m-2"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <div onClick={togglePassword} className="eye-icons">
-            {!showPassword ? <FaEyeSlash /> : <FaEye />}
+          {/* Password Input with Toggle */}
+          <div className="relative">
+            <input
+              type={`${showPassword ? "text" : "password"}`}
+              value={password}
+              placeholder="Enter your Password"
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10" // pr-10 for eye icon space
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span
+              onClick={togglePassword}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 cursor-pointer"
+            >
+              {!showPassword ? (
+                <FaEyeSlash className="h-5 w-5" />
+              ) : (
+                <FaEye className="h-5 w-5" />
+              )}
+            </span>
           </div>
-          <button type="submit" className="p-2 m-2 bg-red-500">
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition ease-in-out duration-150 font-semibold"
+          >
             Submit
           </button>
         </form>
+
+        {/* Message Display (Success/Error) */}
+        {message && (
+          <p
+            className={`mt-4 text-center ${
+              message.includes("successful") ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {message}
+          </p>
+        )}
       </div>
     </div>
   );
