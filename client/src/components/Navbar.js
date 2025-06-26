@@ -2,9 +2,9 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import Logout from "./Logout";
 
-const MyNavbar = () => {
+const MyNavbar = ({ ref }) => {
   return (
-    <Navbar className="bg-red-200 my-navbar">
+    <Navbar className="bg-red-200 my-navbar" ref={ref}>
       <ul>
         <li>
           <a href="/login">Login</a>

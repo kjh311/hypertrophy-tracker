@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Welcome from "./components/Welcome";
@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UpdateHeights from "./components/UpdateHeights";
 
 export const LoggedInContext = React.createContext();
 
@@ -15,31 +16,39 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     !!localStorage.getItem("hypertrophy-token")
   );
+  const navbarRef = useRef(null);
+  const footerRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState("100vh");
 
   return (
     <div className="App">
       <LoggedInContext.Provider value={[loggedIn, setLoggedIn]}>
         <Router>
-          <Navbar />
+          <UpdateHeights
+            navbarRef={navbarRef}
+            footerRef={footerRef}
+            setContentHeight={setContentHeight}
+          />
+          <Navbar ref={navbarRef} />
           <Routes>
             <Route
               exact
               path="/"
               // element={<Home contentHeight={contentHeight} />}
-              element={<Welcome />}
+              element={<Welcome contentHeight={contentHeight} />}
             />
             <Route
               exact
               path="/register"
               element={
                 <Register
-                // contentHeight={contentHeight}
-                // formData={formData}
-                // setFormData={setFormData}
-                // refreshFlag={refreshFlag}
-                // setRefreshFlag={setRefreshFlag}
-                // loading={loading}
-                // setLoading={setLoading}
+                  contentHeight={contentHeight}
+                  // formData={formData}
+                  // setFormData={setFormData}
+                  // refreshFlag={refreshFlag}
+                  // setRefreshFlag={setRefreshFlag}
+                  // loading={loading}
+                  // setLoading={setLoading}
                 />
               }
             />
@@ -50,15 +59,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Dashboard
-                  // contentHeight={contentHeight}
-                  // refreshFlag={refreshFlag}
-                  // setRefreshFlag={setRefreshFlag}
+                    contentHeight={contentHeight}
+                    // refreshFlag={refreshFlag}
+                    // setRefreshFlag={setRefreshFlag}
                   />
                 </ProtectedRoute>
               }
             />
           </Routes>
-          <Footer />
+          <Footer ref={navbarRef} />
         </Router>
       </LoggedInContext.Provider>
     </div>

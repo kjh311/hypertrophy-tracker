@@ -4,7 +4,7 @@ import { LoggedInContext } from "../App";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import "./LoginForm.css"; // You'll create this CSS file
 
-const LoginForm = ({ onLoginSuccess, onLoginError }) => {
+const LoginForm = ({ onLoginSuccess, onLoginError, contentHeight }) => {
   // State to hold the email and password input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -99,7 +99,7 @@ const LoginForm = ({ onLoginSuccess, onLoginError }) => {
   };
 
   return (
-    <div className="login-form-container">
+    <div className="login-form-container" style={{ minHeight: contentHeight }}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">

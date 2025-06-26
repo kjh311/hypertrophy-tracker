@@ -6,7 +6,7 @@ import Button from "./Button";
 import { LoggedInContext } from "../App";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const Register = () => {
+const Register = ({ contentHeight }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,7 +59,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="register-container" style={{ minHeight: contentHeight }}>
       <div className="register-card rounded-xl pt-3 pb-3">
         <h2 className="text-lg sm:text-2xl font-bold text-center mb-2 sm:mb-6">
           Create an Account
