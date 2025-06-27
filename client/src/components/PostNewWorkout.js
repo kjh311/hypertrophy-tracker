@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IoCloseCircle } from "react-icons/io5";
 
-const PostNewWorkout = () => {
+const PostNewWorkout = ({ workoutName, setWorkoutName }) => {
   const [showModal, setShowModal] = useState(false);
-  const [workoutName, setWorkoutName] = useState("");
 
   const handleClose = () => {
     setShowModal(false);

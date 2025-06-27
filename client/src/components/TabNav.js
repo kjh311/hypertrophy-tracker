@@ -1,12 +1,15 @@
-// import React from "react";
+import React, { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { FaDumbbell } from "react-icons/fa";
 import { MdHowToReg } from "react-icons/md";
 import { GiProgression } from "react-icons/gi";
 import PostNewWorkout from "./PostNewWorkout";
+import ShowWorkouts from "./ShowWorkouts";
 
 const TabNav = () => {
+  const [workoutName, setWorkoutName] = useState("");
+
   return (
     <div>
       <Tabs
@@ -23,7 +26,14 @@ const TabNav = () => {
           }
         >
           Tab content for Workout
-          <PostNewWorkout />
+          <PostNewWorkout
+            workoutName={workoutName}
+            setWorkoutName={setWorkoutName}
+          />
+          <ShowWorkouts
+            workoutName={workoutName}
+            setWorkoutName={setWorkoutName}
+          />
         </Tab>
         <Tab
           eventKey="instructions"
