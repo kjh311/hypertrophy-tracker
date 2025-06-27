@@ -4,6 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import { FaDumbbell } from "react-icons/fa";
 import { MdHowToReg } from "react-icons/md";
 import { GiProgression } from "react-icons/gi";
+import PostNewWorkout from "./PostNewWorkout";
 
 const TabNav = () => {
   return (
@@ -18,11 +19,11 @@ const TabNav = () => {
           title={
             <span className="flex items-center">
               Workout <FaDumbbell className="dumbell-icon" size={30} />
-              {/* <i class="fa-solid fa-dumbbell"></i> */}
             </span>
           }
         >
           Tab content for Workout
+          <PostNewWorkout />
         </Tab>
         <Tab
           eventKey="instructions"
