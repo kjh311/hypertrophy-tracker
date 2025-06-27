@@ -28,6 +28,8 @@ const workoutsRoute = require("./routes/workouts");
 
 dotenv.config();
 
+console.log("Backend's loaded JWT_SECRET:", process.env.JWT_SECRET);
+
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());

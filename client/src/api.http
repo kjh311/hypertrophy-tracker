@@ -2,19 +2,20 @@
 # but it doesn't hurt to keep it if you prefer to see the active environment.
 
 ### Register a new user
-POST http://localhost:5000/api/auth/register
+POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
   "name": "Kevin",
-  "email": "kevin@example.com",
+  "email": "kjh311@gmail.com",
   "password": "yourPassword"
 }
 
 ### Create a new workout
-POST http://localhost:5000/api/workouts
+POST http://localhost:8080/api/workouts
 Content-Type: application/json
-Authorization: Bearer {{development.TOKEN}}
+Authorization: Bearer {{$dotenv TOKEN}}
+
 {
   "name": "Arm Workout"
 }
