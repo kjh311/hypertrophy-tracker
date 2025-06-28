@@ -6,9 +6,12 @@ import { MdHowToReg } from "react-icons/md";
 import { GiProgression } from "react-icons/gi";
 import PostNewWorkout from "./PostNewWorkout";
 import ShowWorkouts from "./ShowWorkouts";
+import Select from "react-select";
+import { options } from "../json/excercises";
 
 const TabNav = () => {
   const [workoutName, setWorkoutName] = useState("");
+  const [value, setValue] = React.useState({});
 
   return (
     <div>
@@ -43,7 +46,16 @@ const TabNav = () => {
             </span>
           }
         >
-          Tab content for Instructions
+          <h2>Tab content for Instructions</h2>
+          <br />
+          <Select
+            name="accounts"
+            options={options}
+            value={value}
+            onChange={setValue}
+            getOptionLabel={(option) => option.accountName}
+            getOptionValue={(option) => option.accountNumber} // It should be unique value in the options. E.g. ID
+          />
         </Tab>
         <Tab
           eventKey="progress"
