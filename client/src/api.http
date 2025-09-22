@@ -21,13 +21,22 @@ Authorization: Bearer {{$dotenv TOKEN}}
 }
 
 ### Post a new exercise
+POST http://localhost:8080/api/templates
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+  "name": "Bench Press"
+}
+
+### Post a new log
 POST http://localhost:8080/api/exercises
 Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-  "name": "Bench Press",
-  "date": "2024-05-20T10:00:00Z",
+  "templateId": "68d1650572bc6414b71f68b4",
+  "date": "2024-05-22T10:30:00Z",
   "sets": [
     {
       "weight": 135,
@@ -43,3 +52,8 @@ Authorization: Bearer {{$dotenv TOKEN}}
     }
   ]
 }
+
+### get all log
+GET http://localhost:8080/api/exercises/template/68d1650572bc6414b71f68b4
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}

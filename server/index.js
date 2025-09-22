@@ -19,12 +19,8 @@ app.use(
 
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
-// const expensesRoutes = require("./routes/expenses");
-// const subcategoriesRoute = require("./routes/subcategories");
-// const transactionRoutes = require("./routes/transactions");
-// const budgetRoutes = require("./routes/budget");
-// const exportRoutes = require("./routes/exportRoutes");
-const exercisesRoute = require("./routes/exercises");
+const templateRouter = require("./routes/templateRoutes");
+const loggedExerciseRouter = require("./routes/loggedExerciseRoutes");
 
 dotenv.config();
 
@@ -35,12 +31,9 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-app.use("/api/exercises", exercisesRoute);
-// app.use("/api/expenses", expensesRoutes);
-// app.use("/api/subcategories", subcategoriesRoute);
-// app.use("/api/transactions", transactionRoutes);
-// app.use("/api/budget", budgetRoutes);
-// app.use("/api/export", exportRoutes);
+// Use the new routers for their specific endpoints
+app.use("/api/templates", templateRouter);
+app.use("/api/exercises", loggedExerciseRouter);
 
 // serviceWorkerRegistration.register();
 
