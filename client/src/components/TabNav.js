@@ -8,6 +8,10 @@ import PostNewWorkout from "./PostNewWorkout";
 import ShowWorkouts from "./ShowWorkouts";
 import Select from "react-select";
 import { options } from "../json/excercises";
+// import ResponsiveEmbed from "react-bootstrap/ResponsiveEmbed";
+// import {ResponsiveEmbed}
+// import ReactPlayer from "react-player";
+import YoutubeEmbed from "./YoutubeEmbed";
 
 const TabNav = () => {
   const [workoutName, setWorkoutName] = useState("");
@@ -53,9 +57,17 @@ const TabNav = () => {
             options={options}
             value={value}
             onChange={setValue}
-            getOptionLabel={(option) => option.accountName}
-            getOptionValue={(option) => option.accountNumber} // It should be unique value in the options. E.g. ID
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.name} // It should be unique value in the options. E.g. ID
           />
+          {value.name}
+          <br />
+          {/* {value.category}
+          <br />
+          {value.subCategory} */}
+          <br />
+          {/* <ReactPlayer src={value.instructions} /> */}
+          <YoutubeEmbed src={value.instructions} />
         </Tab>
         <Tab
           eventKey="progress"

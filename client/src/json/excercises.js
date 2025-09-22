@@ -1,26 +1,20 @@
 export const options = [
   {
-    sortCode: "55-77-42-56",
-    accountNumber: "0848890234",
-    accountType: "Savings Account",
-    accountName: "XYZ Sam",
+    name: "Bicep Curl",
+    subCategory: "Biceps",
+    category: "Arm",
+    instructions: "https://youtu.be/Nkl8WnH6tDU?si=GPcjAPkvcdPR6XvP",
   },
   {
-    sortCode: "55-77-42-56",
-    accountNumber: "0848890234",
-    accountType: "Savings Account",
-    accountName: "XYZ Sam2",
+    name: "Barbell Curl",
+    subCategory: "Biceps",
+    category: "Arm",
+    instructions: "https://youtube.com/shorts/njzRGdW0PGk?si=riP_6oVgghgqutB3",
   },
   {
-    sortCode: "55-77-42-56",
-    accountNumber: "0848890234",
-    accountType: "Savings Account",
-    accountName: "XYZ Sam3",
-  },
-  {
-    sortCode: "55-77-42-56",
-    accountNumber: "0848890234",
-    accountType: "Savings Account",
-    accountName: "XYZ Sam4",
+    name: "Tricep Extension",
+    subCategory: "Triceps",
+    category: "Arm",
+    instructions: "https://youtu.be/1u18yJELsh0?si=dvK--GBp6kvQnXqZ",
   },
 ];
