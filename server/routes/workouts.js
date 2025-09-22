@@ -153,7 +153,7 @@ router.get("/", verifyToken, async (req, res) => {
 //   }
 // });
 
-// DELETE WORKOUT AND Excercises
+// DELETE WORKOUT AND Exercises
 // router.delete("/:id", verifyToken, async (req, res) => {
 //   const workoutId = req.params.id;
 
@@ -164,7 +164,7 @@ router.get("/", verifyToken, async (req, res) => {
 
 //     res
 //       .status(200)
-//       .json({ message: "Workout and its excercises deleted" });
+//       .json({ message: "Workout and its exercises deleted" });
 //   } catch (err) {
 //     res.status(500).json({ error: err.message });
 //   }

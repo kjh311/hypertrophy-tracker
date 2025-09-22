@@ -24,7 +24,7 @@ const authRoutes = require("./routes/auth");
 // const transactionRoutes = require("./routes/transactions");
 // const budgetRoutes = require("./routes/budget");
 // const exportRoutes = require("./routes/exportRoutes");
-const workoutsRoute = require("./routes/workouts");
+const exercisesRoute = require("./routes/exercises");
 
 dotenv.config();
 
@@ -35,7 +35,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-app.use("/api/workouts", workoutsRoute);
+app.use("/api/exercises", exercisesRoute);
 // app.use("/api/expenses", expensesRoutes);
 // app.use("/api/subcategories", subcategoriesRoute);
 // app.use("/api/transactions", transactionRoutes);

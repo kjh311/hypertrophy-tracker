@@ -19,3 +19,27 @@ Authorization: Bearer {{$dotenv TOKEN}}
 {
   "name": "Arm Workout"
 }
+
+### Post a new exercise
+POST http://localhost:8080/api/exercises
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+  "name": "Bench Press",
+  "date": "2024-05-20T10:00:00Z",
+  "sets": [
+    {
+      "weight": 135,
+      "reps": 10
+    },
+    {
+      "weight": 155,
+      "reps": 8
+    },
+    {
+      "weight": 165,
+      "reps": 6
+    }
+  ]
+}
