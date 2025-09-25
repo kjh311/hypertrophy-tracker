@@ -7,6 +7,7 @@ import { GiProgression } from "react-icons/gi";
 // import PostNewWorkout from "./PostNewWorkout";
 // import ShowWorkouts from "./ShowWorkouts";
 import Select from "react-select";
+import ChooseExercise from "./ChooseExercise";
 // import { options } from "../json/exercises";
 // import ResponsiveEmbed from "react-bootstrap/ResponsiveEmbed";
 // import {ResponsiveEmbed}
@@ -19,6 +20,7 @@ const TabNav = () => {
 
   return (
     <div>
+      <ChooseExercise />
       <Tabs
         defaultActiveKey="tracker"
         id="uncontrolled-tab-example"
