@@ -7,6 +7,8 @@
 
 .my-navbar {
   height: auto;
+  position: absolute;
+  z-index: 1000;
 }
 
 .eye-icons {
