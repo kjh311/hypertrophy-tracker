@@ -1,63 +1,46 @@
-import React from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import React, { useState } from "react";
+import { Nav, Navbar } from "react-bootstrap";
+import AddExcercise from "./AddExcercise";
 import Logout from "./Logout";
 
-// The error occurred because `react-bootstrap-icons` could not be resolved.
-// To make the component self-contained and eliminate this dependency,
-// we will replace the imported icon with a simple inline SVG.
+const MyNavbar = () => {
+  const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
 
-const DoLogout = () => {
-  const handleLogout = () => {
-    // Placeholder for logout logic
-    console.log("Logout function triggered.");
-    // Changed from alert() to a more user-friendly div message
-    // since alert() is blocked in the Canvas environment.
-    const messageDiv = document.createElement("div");
-    messageDiv.innerText = "Logged out successfully!";
-    messageDiv.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px;
-      border-radius: 5px;
-      z-index: 1000;
-      text-align: center;
-    `;
-    document.body.appendChild(messageDiv);
-    setTimeout(() => {
-      document.body.removeChild(messageDiv);
-    }, 3000);
-  };
+  const handleClose = () => setShowAddExerciseModal(false);
+  const handleShow = () => setShowAddExerciseModal(true);
+
+  // Placeholder for templates data. You will need to fetch this from your
+  // API and pass it to this component from a parent component.
+  const templates = [
+    { _id: "1", name: "Bench Press" },
+    { _id: "2", name: "Deadlift" },
+    { _id: "3", name: "Squat" },
+    { _id: "4", name: "Body Weight" },
+  ];
 
   return (
-    <div onClick={handleLogout} className="cursor-pointer">
-      Logout
-    </div>
-  );
-};
+    <>
+      <Navbar className="bg-red-200 my-navbar" expand="lg">
+        <Navbar.Brand href="/">Hypertrophy Tracker</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link onClick={handleShow}>Add Exercise / Measurement</Nav.Link>
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/register">Register</Nav.Link>
+            <Nav.Link>
+              <Logout />
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
-// SVG for a hamburger icon - no longer needed with the correct Navbar setup.
-
-const MyNavbar = ({ ref }) => {
-  return (
-    <Navbar className="bg-red-200 my-navbar" ref={ref} expand="lg">
-      <Navbar.Brand href="/">Hypertrophy Tracker</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ms-auto">
-          <Nav.Link href="/add-exercise">Add Exercise / Measurement</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/register">Register</Nav.Link>
-
-          <Nav.Item>
-            <Logout />
-          </Nav.Item>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      <AddExcercise
+        show={showAddExerciseModal}
+        handleClose={handleClose}
+        templates={templates}
+      />
+    </>
   );
 };
 
