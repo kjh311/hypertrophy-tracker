@@ -10,8 +10,8 @@ const ExerciseTemplateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // New field to store the category (e.g., Biceps, Shoulders, Measurements)
   category: {
+    // Now storing the category sent from the frontend
     type: String,
     required: true,
   },

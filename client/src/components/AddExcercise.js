@@ -1,6 +1,16 @@
-import React, { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import { Button, Modal, Form, Dropdown } from "react-bootstrap";
 import axios from "axios";
+
+// Base URL for API calls
+const API_BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? `http://localhost:8080/api`
+    : `https://mern-expense-tracker-v5y1.onrender.com/api`;
+
+// --- Inline AddExcercise Component ---
 
 const CATEGORIES = [
   "Biceps",
@@ -20,11 +30,6 @@ const AddExcercise = ({ show, handleClose, onTemplateAdded }) => {
   const [exerciseTemplateName, setExerciseTemplateName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0]);
 
-  const url =
-    process.env.NODE_ENV === "development"
-      ? `http://localhost:8080/api/templates`
-      : `https://mern-expense-tracker-v5y1.onrender.com/api/templates`;
-
   const handleAddTemplate = async () => {
     if (!exerciseTemplateName.trim()) {
       console.error("Exercise name cannot be empty.");
@@ -33,7 +38,7 @@ const AddExcercise = ({ show, handleClose, onTemplateAdded }) => {
 
     try {
       await axios.post(
-        url,
+        `${API_BASE_URL}/templates`,
         {
           name: exerciseTemplateName,
           category: selectedCategory, // Include the selected category
@@ -48,19 +53,16 @@ const AddExcercise = ({ show, handleClose, onTemplateAdded }) => {
         }
       );
 
-      // *** CHANGE MADE HERE ***
-      // Call the callback function provided by TabNav.
-      // TabNav will use this to call ChooseExercise's fetchTemplates function.
+      console.log(
+        `Template Added: ${exerciseTemplateName} in category ${selectedCategory}`
+      );
+
+      // Call the parent callback to trigger the ChooseExercise refresh
       if (onTemplateAdded) {
         onTemplateAdded();
       }
 
       // Close the modal and reset the form
-      console.log(
-        `Template Added: ${exerciseTemplateName} in category ${selectedCategory}`
-      );
-      // The onTemplateAdded function should now handle closing the modal and resetting
-      // state, but we can keep handleClose here for robustness if onTemplateAdded doesn't exist.
       handleClose();
       setExerciseTemplateName("");
       setSelectedCategory(CATEGORIES[0]); // Reset category selection
@@ -71,27 +73,35 @@ const AddExcercise = ({ show, handleClose, onTemplateAdded }) => {
 
   return (
     <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Add New Exercise / Measurement</Modal.Title>
+      <Modal.Header closeButton className="bg-indigo-50 border-b">
+        <Modal.Title className="text-xl font-semibold text-indigo-800">
+          Add New Template
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>Exercise Name</Form.Label>
+          <Form.Group className="mb-4">
+            <Form.Label className="font-medium text-gray-700">
+              Exercise Name
+            </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter exercise name (e.g., Barbell Bench Press)"
+              placeholder="e.g., Barbell Bench Press, Waist Circumference"
               value={exerciseTemplateName}
               onChange={(e) => setExerciseTemplateName(e.target.value)}
+              className="rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
+            <Form.Label className="font-medium text-gray-700">
+              Category
+            </Form.Label>
             <Form.Control
               as="select"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
+              className="rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
               {CATEGORIES.map((category) => (
                 <option key={category} value={category}>
@@ -102,20 +112,23 @@ const AddExcercise = ({ show, handleClose, onTemplateAdded }) => {
           </Form.Group>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
+      <Modal.Footer className="bg-gray-50 border-t">
+        <Button
+          variant="secondary"
+          onClick={handleClose}
+          className="hover:bg-gray-200 transition duration-150"
+        >
+          Cancel
         </Button>
         <Button
           variant="primary"
           onClick={handleAddTemplate}
           disabled={!exerciseTemplateName.trim()}
+          className="bg-indigo-600 border-indigo-600 hover:bg-indigo-700 transition duration-150"
         >
-          Add
+          Add Template
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
-
-export default AddExcercise;
