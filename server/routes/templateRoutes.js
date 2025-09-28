@@ -5,7 +5,8 @@ const verifyToken = require("../middleware/verifyToken");
 
 // POST a new exercise/measurement template
 router.post("/", verifyToken, async (req, res) => {
-  const { name } = req.body;
+  // Extract both name and category from the request body
+  const { name, category } = req.body;
 
   try {
     if (!req.userId) {
@@ -15,6 +16,7 @@ router.post("/", verifyToken, async (req, res) => {
     const newTemplate = new ExerciseTemplate({
       user: req.userId,
       name,
+      category, // Assign the category field
     });
 
     const saved = await newTemplate.save();
