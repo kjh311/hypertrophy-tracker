@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { Form, Dropdown } from "react-bootstrap";
 import axios from "axios";
 
-const ChooseExercise = () => {
+// 1. Wrap the component with forwardRef to accept a ref from the parent
+const ChooseExercise = forwardRef((props, ref) => {
   const [exerciseTemplates, setExerciseTemplates] = useState([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState(null);
   const [selectedTemplateName, setSelectedTemplateName] =
@@ -13,27 +19,34 @@ const ChooseExercise = () => {
       ? `http://localhost:8080/api`
       : `https://mern-expense-tracker-v5y1.onrender.com/api`;
 
+  // 2. Define fetchTemplates as a standalone function
+  const fetchTemplates = async () => {
+    try {
+      const token = localStorage.getItem("hypertrophy-token");
+      const res = await axios.get(`${baseUrl}/templates`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setExerciseTemplates(res.data);
+    } catch (error) {
+      console.error("Error fetching templates:", error);
+    }
+  };
+
+  // 3. Call fetchTemplates on initial mount
   useEffect(() => {
-    const fetchTemplates = async () => {
-      try {
-        const token = localStorage.getItem("hypertrophy-token");
-        const res = await axios.get(`${baseUrl}/templates`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setExerciseTemplates(res.data);
-      } catch (error) {
-        console.error("Error fetching templates:", error);
-      }
-    };
     fetchTemplates();
   }, [baseUrl]);
 
+  // 4. Use useImperativeHandle to expose fetchTemplates via the ref
+  useImperativeHandle(ref, () => ({
+    fetchTemplates: fetchTemplates,
+  }));
+
   return (
-    <div className="">
+    <span className="">
       <Form.Group className="mb-3">
-        {/* <Form.Label>Choose Exercise</Form.Label> */}
         <Dropdown
           onSelect={(eventKey) => {
             const selected = exerciseTemplates.find(
@@ -61,8 +74,8 @@ const ChooseExercise = () => {
           </Dropdown.Menu>
         </Dropdown>
       </Form.Group>
-    </div>
+    </span>
   );
-};
+});
 
 export default ChooseExercise;

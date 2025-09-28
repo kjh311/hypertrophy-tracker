@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import AddExcercise from "./AddExcercise";
+// import AddExcercise from "./AddExcercise";
 import Logout from "./Logout";
 
 const MyNavbar = () => {
-  const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
+  // const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
 
-  const handleClose = () => setShowAddExerciseModal(false);
-  const handleShow = () => setShowAddExerciseModal(true);
+  // const handleClose = () => setShowAddExerciseModal(false);
+  // const handleShow = () => setShowAddExerciseModal(true);
 
   // Placeholder for templates data. You will need to fetch this from your
   // API and pass it to this component from a parent component.
-  const templates = [
-    { _id: "1", name: "Bench Press" },
-    { _id: "2", name: "Deadlift" },
-    { _id: "3", name: "Squat" },
-    { _id: "4", name: "Body Weight" },
-  ];
 
   return (
     <>
@@ -25,7 +19,7 @@ const MyNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link onClick={handleShow}>Add Exercise / Measurement</Nav.Link>
+            {/* <Nav.Link onClick={handleShow}>Add Exercise / Measurement</Nav.Link> */}
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/register">Register</Nav.Link>
             <Nav.Link>
@@ -35,11 +29,11 @@ const MyNavbar = () => {
         </Navbar.Collapse>
       </Navbar>
 
-      <AddExcercise
+      {/* <AddExcercise
         show={showAddExerciseModal}
         handleClose={handleClose}
         templates={templates}
-      />
+      /> */}
     </>
   );
 };

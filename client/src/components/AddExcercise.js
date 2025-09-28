@@ -47,14 +47,20 @@ const AddExcercise = ({ show, handleClose, onTemplateAdded }) => {
           },
         }
       );
-      // Call a function from the parent to notify that a new template was added
+
+      // *** CHANGE MADE HERE ***
+      // Call the callback function provided by TabNav.
+      // TabNav will use this to call ChooseExercise's fetchTemplates function.
       if (onTemplateAdded) {
         onTemplateAdded();
       }
+
       // Close the modal and reset the form
       console.log(
         `Template Added: ${exerciseTemplateName} in category ${selectedCategory}`
       );
+      // The onTemplateAdded function should now handle closing the modal and resetting
+      // state, but we can keep handleClose here for robustness if onTemplateAdded doesn't exist.
       handleClose();
       setExerciseTemplateName("");
       setSelectedCategory(CATEGORIES[0]); // Reset category selection
